@@ -26,7 +26,7 @@ export default class MainScene extends Phaser.Scene {
     this.load.image('logo', 'assets/images/phaser-logo-200x150.png');
 
     //load second entity
-    this.load.image('juan', 'assets/images/New Piskel.gif');
+    this.load.image('juan', 'assets/images/juan.png');
 
     //load a sound effect for click
     this.load.audio('click', 'assets/sounds/mixkit-sci-fi-click-900.wav');
@@ -72,7 +72,7 @@ export default class MainScene extends Phaser.Scene {
 
 
     // add interactive object
-    const entity = this.add.image(400, 740, 'juan');
+    const entity = this.add.image(150, 500, 'juan');
     entity.setInteractive();
     //click Handler
     entity.on('pointerdown', () => {
@@ -133,35 +133,34 @@ export default class MainScene extends Phaser.Scene {
       loop: true
     });
 
-    updateTimer() {
-      this.timeLeft--;
-      this.timeText.setText(`Time: ${this.timeLeft}`);
-
-      if (this.timeLeft <= 0) {
-        // Game over logic
-        this.add.text(400, 300, 'GAME OVER', {
-          font: '64px Arial',
-          fill: '#ff0000'
-        }).setOrigin(0.5);
-
-        // Stop the timer
-        this.time.removeAllEvents();
-      }
   }
 
   /**
-   * Update - called frame by frame
-   * game, logic, movement, etc.
-   * @param {number} time - current time
-   * @param {number} delta - Time since last frame
-   */
+     * Update - called frame by frame
+     * game, logic, movement, etc.
+     * @param {number} time - current time
+     * @param {number} delta - Time since last frame
+     */
   // eslint-disable-next-line no-unused-vars
-  update(time, delta)
-  {
+  update(time, delta) {
     // time = total elapsed time (ms)
     // delta = time elapsed since last frame
 
 
   }
-}
+  updateTimer() {
+    this.timeLeft--;
+    this.timeText.setText(`Time: ${this.timeLeft}`);
+
+    if (this.timeLeft <= 0) {
+      // Game over logic
+      this.add.text(400, 300, 'GAME OVER', {
+        font: '64px Arial',
+        fill: '#ff0000'
+      }).setOrigin(0.5);
+
+      // Stop the timer
+      this.time.removeAllEvents();
+    }
+  }
 }
